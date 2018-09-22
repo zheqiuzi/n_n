@@ -1,0 +1,287 @@
+    *{
+        padding: 0px;
+        margin: 0px;
+        border: 0px;
+        box-sizing: border-box;
+        font-family: '黑体';
+        font-size: 16px;
+    }
+
+    *:not(input) {
+        -webkit-touch-callout:none;
+        -webkit-user-select:none;
+        -khtml-user-select:none;
+        -moz-user-select:none;
+        -ms-user-select:none;
+        user-select:none;
+    }
+
+/*布局*/
+    .table-cells{
+
+    }
+    .table-cells.noMinHeight .table-cell,.table-cell.noMinHeight{
+        min-height: 0;
+    }
+    .table-cells .table-cell:first-child{
+        border-top: 0.5px solid #eee;
+    }
+    .table-cell{
+        min-height: 45px;
+        border-bottom: 0.5px solid #eee;
+    }
+    .table-cell input:not([type="radio"]){
+        height: 25px;
+        width: 100%;
+        background: none;
+        outline: none;
+        font-size: 16px;
+    }
+    .table-cell input:not([type="radio"]):hover{
+        background: none;
+    }
+    .table-cell [col='0']{
+        flex-grow:0;
+    }
+    .table-cell [col='1']{
+        flex-grow:1;
+    }
+    .table-cell [col='2']{
+        flex-grow:2;
+    }
+    .table-cell [col='3']{
+        flex-grow:3;
+    }
+    .table-cell [col='4']{
+        flex-grow:4;
+    }
+    .table-cell [col='5']{
+        flex-grow:5;
+    }
+    .table-cell [col='6']{
+        flex-grow:6;
+    }
+    .table-cell [col='7']{
+        flex-grow:7;
+    }
+    .table-cell [col='8']{
+        flex-grow:8;
+    }
+    .table-cell [col='9']{
+        flex-grow:9;
+    }
+    .table-cell [col='10']{
+        flex-grow:10;
+    }
+
+
+    .table-cell{
+        display: flex;
+        /*横向排列*/
+        flex-direction: row ;
+        /*不换行*/
+        flex-wrap: nowrap;
+        /*两端对齐*/
+        justify-content:space-between;
+        /*垂直居中*/
+        align-items: center;
+        /*内边距*/
+        padding: 10px 15px;;
+    }
+    .table-cell .table-cell-hd{
+        flex-grow: 0;
+        flex-shrink:0;
+    }
+    .table-cell .table-cell-bd{
+        flex-grow: 1;
+        padding: 0px 10px;
+        flex-shrink:1;
+    }
+    .table-cell .table-cell-ft{
+        flex-grow: 0;
+        flex-shrink:0;
+    }
+
+    .table-cell .icon-big{
+        width: 60px;
+        height: 60px;
+        overflow: hidden;
+    }
+    .table-cell .icon-middle{
+        width: 40px;
+        height: 40px;
+        overflow: hidden;
+    }
+    .table-cell .icon-small{
+        width: 20px;
+        height: 20px;
+        overflow: hidden;
+    }
+
+    .table-cell .icon-big img,.table-cell .icon-middle img,.table-cell .icon-small img{
+        display: block;
+        max-width:100%;
+    }
+
+/*列表布局*/
+    .x-list-block{
+        width: 100%;
+        list-style: none;
+        padding: 10px 15px;
+    }
+    .x-list-block li{
+        display: inline-block;
+        width: 80px;
+        height: 80px;
+        margin-right:10px;
+        margin-bottom: 10px;
+        background: #eee;
+    }
+
+/*字体*/
+
+    /*只能为阿拉伯数字信息，如金额、时间等*/
+    .t-big-super-super{
+        font-size:40px ;
+    }
+    /*页面大标题 一般用于结果、空状态等信息单一的页面*/
+    .t-big-super{
+        font-size: 20px;
+    }
+    /*页面大按钮字体 与按钮搭配使用*/
+    .t-big{
+        font-size: 18px;
+    }
+    /*页面层级信息，基准的，可以是连续的，例如列表标题消息气泡*/
+    .t-middle{
+        font-size: 16px;
+    }
+    /*页面内才要的描述信息，服务于首要信息并与之关联，如页面列表摘要*/
+    .t-small{
+        font-size: 14px;
+    }
+    /*页面辅助信息，弱化的内容,如连接,小按钮*/
+    .t-small-super{
+        font-size: 12px;
+    }
+
+/*元素基本信息*/
+    p{
+        margin-bottom: 10px;
+    }
+/*情景标题*/
+    .z-container,.z-cntr,.x-cntr{
+        padding: 10px 15px;;
+    }
+    .z-cntr-plus,.x-cntr-plus{
+		 	padding:15px
+		 }
+/*内边距*/
+    /*拥有p标签的padding属性*/
+    .p{
+        padding: 10px 15px;
+    }
+    .nopadding{
+        padding: 0px !important;
+    }
+    .nopadding-lr{
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+    .nopadding-tb{
+    	padding-top:0px !important;
+    	padding-bottom:0px !important;
+    }
+    
+    .nopadding-t{
+        padding-top: 0px !important;
+    }
+
+    .nopadding-r{
+        padding-right: 0px !important;
+    }
+
+    .nopadding-ltr{
+        padding-top: 0px !important;
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+    
+
+/*外边距*/
+	.nomargin{
+        margin:0px !important;
+	}
+    .margin-r{
+        margin-right:4px;
+    }
+/*颜色*/
+
+    /*通常用于默认文字颜色*/
+    .black{
+        color: #000;
+    }
+    /*通常用于xxxx*/
+    .gray-deep{
+        color: #333;
+    }
+
+    /*通常用于辅助文字颜色*/
+    .gray{
+        color: #888;
+    }
+
+    /*通常用于淡化文字显示颜色*/
+    .gray-light{
+        color: #bbb;
+    }
+
+    /*通常用于边框、背景、不可选状态颜色*/
+    .gray-light-hight{
+        color: #eee;
+    }
+
+    .white{
+        color:#fff
+    }
+
+    .violet{
+        color:#ff2355;
+    }
+    .yellow{
+        color: #f4ea2a;
+    }
+    .green{
+        color:#72fb02
+    }
+    .orange{
+        color: #fa7701;
+    }
+
+/*背景*/
+    .bg-gray-light-hight{
+        background: #eee;
+    }
+
+/*位置*/
+    .t-center{
+        text-align: center;
+    }
+    .v-center{
+        vertical-align: middle;
+    }
+/*边框*/
+    .border{
+        border: 1px solid #eee;
+    }
+
+/*显示*/
+
+    ._hide,.hide{
+        display: none;
+    }
+
+/*边框*/
+    .noborder{
+        border: none !important;
+    }

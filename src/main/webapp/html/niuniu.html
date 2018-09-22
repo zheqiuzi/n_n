@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1" name="viewport">
+
+    <title></title>
+    <link rel="stylesheet" href="../static/css/appui.css" />
+    <style>
+        body{
+            background: url("../static/images/bg-top.jpg") no-repeat 100%;
+        }
+        .user .info{
+
+        }
+        .poker{
+            position: relative;
+            height: 50px;
+        }
+        .user .poker img{
+            position: absolute;
+            width: 28px;
+        }
+        .left.user .poker .p1{
+            left: 0px;
+            z-index: 1;
+        }
+        .left.user .poker .p2{
+           left: 20px;
+            z-index: 2;
+        }
+        .left.user .poker .p3{
+            left: 40px;
+            z-index: 3;
+        }
+        .left.user .poker .p4{
+            left: 60px;
+            z-index: 4;
+        }
+        .left.user .poker .p5{
+            left: 80px;
+            z-index: 5;
+        }
+
+        .right.user .poker .p1{
+            right: 0px;
+            z-index: 5;
+        }
+        .right.user .poker .p2{
+            right: 20px;
+            z-index: 4;
+        }
+        .right.user .poker .p3{
+            right: 40px;
+            z-index: 3;
+        }
+        .right.user .poker .p4{
+            right: 60px;
+            z-index: 2;
+        }
+        .right.user .poker .p5{
+            right: 80px;
+            z-index: 1;
+        }
+
+        .text{
+            background: rgba(0,0,0,0.25);
+            padding:4px;
+            font-size: 12px;
+            border-radius: 4px;
+        }
+        .text .name{
+            font-size: 12px;
+            color: #eee;
+        }
+        .text .score{
+            font-size: 12px;
+            color: #ff9016;;
+        }
+        /*.poker img+img{*/
+            /*float: left;*/
+            /**/
+        /*}*/
+        .title-wrap{
+            width: 100%;
+            text-align: center;
+        }
+        .title-wrap .title{
+            display: inline-block;
+            height: 50px;
+            width: 70%;
+            background: #774004;
+            border-radius: 8px;
+            border: 2px solid rgba(255,255,255,0.8);
+            line-height: 46px;
+            font-size: 18px;
+            color: #fff;
+        }
+        .title-wrap .title span{
+            font-size: 18px;
+            color: #fff;
+        }
+
+
+
+        .btns{
+            text-align: center;
+            height: 40px;
+        }
+        .btns button{
+            display: none;;
+            background: #ff9016;
+            color: #fff;
+            font-size: 16px;
+            border-radius: 5px;
+            padding: 5px 10px;
+            margin-bottom: 10px;
+        }
+
+
+        .my.user .poker{
+            height:80px;
+        }
+        .my.user .poker img{
+            position: relative;
+            width: 18%;
+            max-width: 50px;
+            margin: 5px;
+        }
+        .my.user .poker{
+            display: flex;
+            justify-content:center
+        }
+
+        .content-wrap{
+            position: absolute;
+            background: #0b8441;
+            bottom: 0px;
+            width: 100%;
+            padding:25px 0px;
+        }
+        .title-wrap{
+            position: absolute;
+            top: -25px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="content-wrap">
+
+    <p class="title-wrap">
+        <span class="title">
+            底分：<span class="baseScore"></span>
+            当前对局：<span class="gameCurrentCount t-big"></span>/<span class="gameCount"></span>
+        </span>
+    </p>
+
+
+    <div class="gamer-wrap">
+
+
+        <div class="table-cell noborder nopadding-lr">
+            <!--one start-->
+            <div class="table-cell noborder nopadding left otheruser user">
+                <div class="table-cell-bd info">
+                    <img class="avatar icon-middle" src="../static/images/avatar.jpg">
+                    <div class="text">
+                        <p class="name nomargin">张三</p>
+                        <p class="score nomargin">400</p>
+                    </div>
+                </div>
+
+                <div class="poker table-cell-bd ">
+                    <!--<img class="p1" src="poker_0.png">-->
+                    <!--<img class="p2" src="poker_0.png">-->
+                    <!--<img class="p3" src="poker_0.png">-->
+                    <!--<img class="p4" src="poker_0.png">-->
+                    <!--<img class="p5" src="poker_0.png">-->
+
+
+                </div>
+
+            </div>
+            <!--one end-->
+
+            <!--one start-->
+            <div class="table-cell noborder nopadding right otheruser user">
+
+                <div class="poker table-cell-bd ">
+                    <!--<img class="p1" src="poker_0.png">-->
+                    <!--<img class="p2" src="poker_0.png">-->
+                    <!--<img class="p3" src="poker_0.png">-->
+                    <!--<img class="p4" src="poker_0.png">-->
+                    <!--<img class="p5" src="poker_0.png">-->
+                </div>
+
+                <div class="table-cell-bd info">
+                    <img class="avatar icon-middle" src="../static/images/avatar.jpg">
+                    <div class="text">
+                        <p class="name nomargin">张三</p>
+                        <p class="score nomargin">400</p>
+                    </div>
+                </div>
+
+            </div>
+            <!--one end-->
+        </div>
+
+        <div class="table-cell noborder nopadding-lr">
+            <!--one start-->
+            <div class="table-cell noborder nopadding left otheruser user">
+                <div class="table-cell-bd info">
+                    <img class="avatar icon-middle" src="../static/images/avatar.jpg">
+                    <div class="text">
+                        <p class="name nomargin">张三</p>
+                        <p class="score nomargin">400</p>
+                    </div>
+                </div>
+
+                <div class="poker table-cell-bd ">
+                    <!--<img class="p1" src="poker_0.png">-->
+                    <!--<img class="p2" src="poker_0.png">-->
+                    <!--<img class="p3" src="poker_0.png">-->
+                    <!--<img class="p4" src="poker_0.png">-->
+                    <!--<img class="p5" src="poker_0.png">-->
+                </div>
+
+            </div>
+            <!--one end-->
+
+            <!--one start-->
+            <div class="table-cell noborder nopadding right otheruser user">
+
+                <div class="poker table-cell-bd ">
+                    <!--<img class="p1" src="poker_0.png">-->
+                    <!--<img class="p2" src="poker_0.png">-->
+                    <!--<img class="p3" src="poker_0.png">-->
+                    <!--<img class="p4" src="poker_0.png">-->
+                    <!--<img class="p5" src="poker_0.png">-->
+                </div>
+
+                <div class="table-cell-bd info">
+                    <img class="avatar icon-middle" src="../static/images/avatar.jpg">
+                    <div class="text">
+                        <p class="name nomargin">张三</p>
+                        <p class="score nomargin">400</p>
+                    </div>
+                </div>
+
+            </div>
+            <!--one end-->
+        </div>
+
+
+
+        <div class="btns">
+            <button data-multiple="1" data-selector="setWager">1倍</button>
+            <button data-multiple="2" data-selector="setWager">2倍</button>
+            <button data-multiple="4" data-selector="setWager">4倍</button>
+            <button data-multiple="0" data-selector="setWager">不抢</button>
+            <button data-selector="readying">准备</button>
+            <button data-selector="showdown">摊牌</button>
+        </div>
+        <!--one start-->
+        <div class="table-cell noborder my user">
+
+
+
+            <div class="table-cell-hd info">
+                <img class="avatar icon-middle" src="../static/images/avatar.jpg">
+                <div class="text">
+                    <p class="name nomargin">张三</p>
+                    <p class="score nomargin">400</p>
+                </div>
+            </div>
+
+            <div class="poker table-cell-bd ">
+                <!--<img class="p1" src="poker/poker_0.png">-->
+                <!--<img class="p2" src="poker/poker_0.png">-->
+                <!--<img class="p3" src="poker/poker_0.png">-->
+                <!--<img class="p4" src="poker/poker_0.png">-->
+                <!--<img class="p5" src="poker/poker_0.png">-->
+            </div>
+
+        </div>
+        <!--one end-->
+
+    </div>
+
+</div>
+
+<script src="../static/js/jquery.min.js"></script>
+
+<script>
+
+    $(function(){
+        //下注
+        $(".btns").delegate("button[data-selector='setWager']","click",function(){
+            var multiple=$(this).attr("data-multiple");
+            switch (parseInt(status)){
+                case SETWAGER: setWager(multiple);break;
+                case GRABBANKER:grabBanker(multiple);break;
+            }
+
+
+        })
+        //准备
+        $(".btns").delegate("button[data-selector='readying']","click",function(){
+            readying();
+        });
+        //摊牌setShowdown
+        $(".btns").delegate("button[data-selector='showdown']","click",function(){
+            showdown();
+        });
+
+        //打开页面创建连接
+        createSocket(nickName,userid);
+
+    })
+
+    //用户信息
+    var roomid=getQueryString("roomid");
+    var userid=getQueryString("userid");
+    var nickName=getQueryString("nickName");
+    var NOTHING=0;
+    var SETWAGER=1;
+    var GRABBANKER=2;
+    var status=NOTHING;
+
+
+
+    //创建sokect连接
+    var websocket = null;
+    function createSocket(nick,id){
+
+        //判断当前浏览器是否支持WebSocket
+        if ('WebSocket' in window) {
+            websocket = new WebSocket("ws://localhost:8080/niuniu/login?nickName="+nickName+"&id="+userid);//+"&roomid="+roomid
+        }else{
+            return;
+        }
+        //连接成功建立的回调方法
+        websocket.onopen = function () {
+            console.log("WebSocket连接成功");
+            //进入房间
+            joinRoom(roomid);
+        }
+
+        //接收到消息的回调方法
+        websocket.onmessage = function (event) {
+            console.log(event.data);
+            handleMessage(event.data);
+        }
+    }
+    //发送消息
+    function send(){
+        websocket.send("msg:"+getInput());
+    }
+
+    function getInput(){
+        var inputText=document.getElementById("input");
+        return inputText.value;
+    }
+    //初始化整个房间信息
+    function initRoomAndGame(){
+        getRoomInfo();
+    }
+    //进入房间
+    function joinRoom(roomid){
+        websocket.send("join:"+roomid);
+    }
+    function getRoomInfo(){
+        websocket.send("getCurrentGameInfo:-")
+    }
+    //准备
+    function readying(){
+        websocket.send("readying:-");
+    }
+
+    //设置倍数
+    function setWager(multiple){
+        websocket.send("setWager:"+multiple);
+    }
+
+    //抢庄设置倍数
+    function grabBanker(multiple){
+        websocket.send("grabBanker:"+multiple);
+    }
+
+    //摊牌
+    function showdown(){
+        websocket.send("setShowdown:-");
+    }
+
+    //获取url参数
+    function getQueryString(name){
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)return  unescape(r[2]); return null;
+    }
+
+    //提示消息
+    function showMsg(msg){
+        alert(msg);
+    }
+
+
+    /************交互处理**********/
+    //{status:200,data:'{msgType:'readier',readier:'true'}'}
+
+    function handleMessage(data){
+        var msg=eval("("+data+")");
+
+        if(msg.status==null){
+            return;
+        }
+        if(msg.status!=200){
+            showMsg(msg.data);
+            return;
+        }
+        if(msg.data.msgType=="readier"){
+            handleReadying(msg.data);
+        }else if(msg.data.msgType=="grabBanker"){
+            handleGrabBanker(msg.data);
+        }else if(msg.data.msgType=="timer"){
+            handleTimer(msg.data)
+        }else if(msg.data.msgType=="receiveCard"){
+            //handlePoker(msg.data)已经废弃 用 handleFreshCards 函数代替
+        }else if(msg.data.msgType=="cards"){
+            handleFreshCards(userid,msg.data)
+        }else if(msg.data.msgType=="setWager"){
+            handleSetWager(msg.data);
+        }else if(msg.data.msgType=="showdown"){
+            handleShowdown(msg.data);
+        }else if(msg.data.msgType=="otherJoinedRoom"){
+            handleOtherJoinedRoom(msg.data);
+        }else if(msg.data.msgType=="joinedRoom"){
+            handleJoinedRoom(msg.data);
+        }else if(msg.data.msgType=="currentGameInfo"){
+            handleCurrentGameInfo(msg.data);
+        }
+    }
+
+    //处理自己加入房间事件
+    function handleJoinedRoom(data){
+        //{status:200,data:{msgType:'joinedRoom',msg:'error',remarks:'进入房间失败！',reason:'房间不存在或者已经关闭a'}}
+        if(data.msg=="error"){
+            showMsg(data.reason);
+            return;
+        }
+        //加入房间后初始化房间信息
+        initRoomAndGame();
+    }
+    //拉取房间信息
+    function handleCurrentGameInfo(data){
+        if(data.msg==null||data.msg=="null"){
+            return;
+        }
+        //初始化房间信息
+        $(".gameCount").text(data.msg.game.gameCount);
+        $(".gameCurrentCount").text(data.msg.game.gameCurrentCount);
+        //初始化玩家游戏信息
+        var otherContainer=$(".otheruser");
+        var gamers=data.msg.gamers;
+        for(var i=0;i<gamers.length;i++){
+            var gamer=eval("("+gamers[i]+")");
+            if(gamer.id==userid)return;
+            //设置id
+            $(otherContainer[i]).attr("data-userid",gamer.id)
+            //设置头像
+            $(otherContainer[i]).find(".avatar").attr("src",gamer.avatarUrl);
+            //设置名称
+            $(otherContainer[i]).find(".name").text(gamer.nickName);
+            //设置分数
+            $(otherContainer[i]).find(".score").text(gamer.balance);
+            //设置牌面
+            debugger;
+            handleFreshCards(gamer.id,gamer)
+
+            //设置状态
+        }
+
+        //maxPlayerNum
+    }
+    //处理有新玩家加入事件
+    function handleOtherJoinedRoom(data){
+
+        //拉取他的个人资料
+        if(data.msg.id==userid){
+            //id为自己的时候渲染自己的数据
+            var my=$(".my.user");
+            $(my).find(".avatar").attr("src",data.msg.avatarUrl);
+            $(my).find(".name").text(data.msg.nickName);
+            $(my).find(".score").text(data.msg.blance);
+            $(my).attr("data-userid",data.msg.id)
+            $(my).show();
+        }else{
+            //新玩家加入房间，寻找没有data-userid的空位填充
+            var nullUser=$(".user:not([data-userid])")[0];
+            $(nullUser).find(".avatar").attr("src",data.msg.avatarUrl);
+            $(nullUser).find(".name").text(data.msg.nickName);
+            $(nullUser).find(".score").text(data.msg.blance);
+            $(nullUser).attr("data-userid",data.msg.id)
+            $(nullUser).show();
+        }
+    }
+
+
+    //处理准备相关消息
+    function handleReadying(data){
+        //{status:200,data:'{msgType:'readier',msg:'游戏就绪，开始准备'}'}
+        //可以准备
+        if(data.msg=="able"){
+            showBtns(SHOW_BTNS_READYING,function(){
+                $(".btns button").hide();
+                $("[data-selector='readying']").show();
+            })
+
+        }
+        //已经准备
+        else if(data.msg=="ed"){
+            showBtns(SHOW_BTNS_READYING,function(){
+                $(".btns button").hide();
+            })
+
+        }
+    }
+    //处理抢庄
+    function handleGrabBanker(data){
+        //可以抢庄
+        if(data.msg=="able"){
+            status=GRABBANKER;
+            showBtns(SHOW_BTNS_GRABBANKER,function(){
+                $(".btns button").hide();
+                $("[data-selector='setWager']").show();
+            })
+
+        }
+        //已经抢庄
+        else if(data.msg=="ed"){
+            showBtns(SHOW_BTNS_GRABBANKER,function(){
+                $(".btns button").hide();
+            })
+        }
+    }
+    //处理timer事件
+    function handleTimer(data){
+        //{timerType:'reading',event:'show',remaining:20}}
+        //msgType:timer,msg:{timerType:'reading',event:'heartbeat',remaining:20}}
+//        {msgType:timer,msg:{timerType:'reading',event:'timeOut'}}
+        if(data.msg.event=="show"){
+            $(".waiting .seconds").text(data.msg.remaining);
+            showWaiting()
+        }else if(data.msg.event=="heartbeat"){
+            $(".waiting .seconds").text(data.msg.remaining);
+        }else if(data.msg.event=="timeOut"||data.msg.event=="interrupt"){
+            $(".waiting .seconds").text(data.msg.remaining);
+            hideWaiting()
+        }
+
+        if(data.msg.timerType=="reading"){
+            $(".waiting .event").text("等待准备");
+        }else if(data.msg.timerType=="grabBanker"){
+            $(".waiting .event").text("等待抢庄");
+        }
+    }
+
+    //处理获得扑克牌事件 该事件用于得到一张扑克就添加一张
+    //{status:200,data:{msgType:'receiveCard',msg:{size:1, color:1, isVisible:true}}}
+    function handlePoker(data){
+        if(data.msg.index==-1){
+            //发的一张新牌，寻找没有data-size的空牌位填充
+            var nullPoker=$(".my .poker img:not([data-size])")[0];
+            $(nullPoker).attr("data-size",data.msg.size);
+            $(nullPoker).attr("src","poker/poker_"+data.msg.size+"_"+data.msg.color+".png");
+        }else{
+            //获取的是所有的牌 按照index顺序填充
+            var pokers=$(".my .poker img");
+            $(pokers[data.msg.index]).attr("data-size",data.msg.size);
+            $(pokers[data.msg.index]).attr("src","poker/poker_"+data.msg.size+"_"+data.msg.color+".png");
+        }
+    }
+    //处理读取到的扑克 该是事件用于更新某以用户所有的扑克
+    function handleFreshCards(mUserid,data){
+        //String str="{msgType:'cards',id:'"+player.getId()+"',msg:"+cards+"}";
+   // <img class="p1" src="poker/poker_12_4.png" data-size="12">
+        $("[data-userid='"+mUserid+"'] .poker img").remove();
+
+        var pokerContainer=$("[data-userid='"+mUserid+"'] .poker");
+debugger;
+//        for(var i=0;i<data.cards.length;i++){
+        for(var i=0;i<data.cards.length;i++){
+            var html;
+            //if(data.cards[i].isVisible==true){
+                html='<img class="p'+(i+1)+''+data.cards[i].size+'" src="../../static/images/poker/poker__.png" data-size="'+data.cards[i].color+''+data.cards[i].size+'">';
+            //}else{
+                //html='<img class="p'+(i+1)+'" src="poker_0.png">'
+            //}
+
+            $(pokerContainer).append($(html))
+        }
+    }
+
+    //处理下注
+    function handleSetWager(data){
+        //"{msgType:'settableWager',msg:'ed',remarks:'可以下注'}";
+        if(data.msg=="able"){
+            status=SETWAGER;
+            showBtns(SHOW_BTNS_SETWAGER,function(){
+                $(".btns button").hide();
+                $(".btns [data-selector='setWager']").show();
+            })
+
+        }else if(data.msg=="ed"){
+            showBtns(SHOW_BTNS_SETWAGER,function(){
+                $(".btns button").hide();
+            })
+
+        }else if(data.msg=="error"){
+
+        }
+    }
+
+    //处理摊牌
+    //{status:200,data:{msgType:'showdown',msg:'able',remarks:'可以摊牌'}}
+    function handleShowdown(data){
+        //可以摊牌
+        if(data.msg=="able"){
+            showBtns(SHOW_BTNS_SHOWDOWN,function(){
+                $(".btns button").hide();
+                $(".btns [data-selector='showdown']").show();
+            })
+            return;
+        }
+        //已经摊牌
+        else if(data.msg=="ed") {
+            showBtns(SHOW_BTNS_SHOWDOWN, function () {
+                $(".btns button").hide();
+            })
+            return;
+        }
+
+        //处理玩家摊牌信息
+        if(data.id!=userid){
+            handleFreshCards(data.id,data);
+        }
+    }
+
+
+
+    //显示按钮
+    var showBtnslevel=0;
+    var SHOW_BTNS_READYING=1;
+    var SHOW_BTNS_GRABBANKER=2;
+    var SHOW_BTNS_SETWAGER=3;
+    var SHOW_BTNS_SHOWDOWN=4;
+    function handleBtns(level,callback){
+        if(level<showBtnslevel){
+            return;
+        }
+        showBtnslevel=level;
+
+        if(callback){
+            callback();
+        }
+    }
+
+    function showBtns(level,callback){
+        handleBtns(level,callback);
+    }
+
+    function hideBtns(level,callback){
+        handleBtns(level,callback);
+    }
+
+
+    function showWaiting(){
+        var w=$(window).width();
+        var h=$(window).height();
+
+        var ww=$(".waiting").width();
+        var wh=$(".waiting").height();
+
+        var l=(w-ww)/2;
+        var t=(h-wh)/2;
+
+        $(".waiting").css({"top":t,"left":l});
+        $(".waiting").show();
+    }
+
+    function hideWaiting(){
+        $(".waiting").hide();
+    }
+</script>
+<style>
+    .waiting{
+        position: fixed;
+        top:100px;
+        left:50%;
+        z-index: 998;;
+        display: none;
+    }
+    .waiting .seconds{
+        font-size: 30px;
+        color: #fff;
+        padding: 20px;
+        border-radius: 50%;
+        background: rgba(0,0,0,0.5);
+        text-align: center;
+    }
+    .waiting .event{
+        font-size: 14px;
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 4px;
+        background: rgba(0,0,0,0.5);
+    }
+</style>
+<div class="waiting">
+    <p class="seconds nomargin">10</p>
+    <p class="event">等待抢庄</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,6 @@
+.idea
+config/manager_nginx.conf
+/node_modules
+/node_modules/
+/target/
+/target

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1" name="viewport">
+    <title>Title</title>
+    <script src="../../../static/js/jquery.min.js"></script>
+    <script>
+        function getQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]);
+            return null;
+        }
+        var code=getQueryString("code");
+        var url="https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxf575e46d80c02c89&secret=c9f1e6072b0de97cd9187644c7a94b30&code="+code+"&grant_type=authorization_code";
+        location.href=url;
+        // alert(url);
+        // $(function () {
+        //     $.ajax({
+        //         url:url,
+        //         success: function(res){
+        //             alert("01");
+        //             alert(res);
+        //         }
+        //     });
+        // })
+
+        https://api.weixin.qq.com/sns/userinfo?access_token=7_NvrYLAEmzytQNj_MexosY6GkeqAXqOaVjdk1IuCGbxfs6VcM2z7a8TPTj9DbXAaGbKSerCZ76hCXtamF_iHe6A&openid=o5p8V0lBlA42DNtnS6Hqi6lPFg9U","scope":"snsapi_userinfo&lang=zh_CN
+
+
+
+            http://api.xiejin.ink/zhizhi/html/niuniu/wx/callback.html
+
+
+        7_NvrYLAEmzytQNj_MexosY6GkeqAXqOaVjdk1IuCGbxfs6VcM2z7a8TPTj9DbXAaGbKSerCZ76hCXtamF_iHe6A
+        o5p8V0lBlA42DNtnS6Hqi6lPFg9U","scope":"snsapi_userinfo
+    </script>
+</head>
+<body>
+
+</body>
+</html>

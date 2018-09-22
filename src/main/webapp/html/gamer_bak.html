@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no, email=no" />
+    <style>
+        *{
+            padding: 0px;
+            border: 0px;
+            margin: 0px;;
+        }
+        body{
+            background:#eee;
+        }
+        .poker{
+            position:relative;
+            height:45px;
+            padding:8px
+        }
+        .poker img{
+            display: block;
+            width: 35px;
+            height:45px;
+            background: #fff;
+            border-radius: 4px;
+            position: absolute;
+            top: 0px;
+            box-shadow: 0px 0pc 2px 2px rgba(0,0,0,0.025);
+            border: 0.5px solid rgba(0,0,0,0.2);
+        }
+
+        .left .poker img{
+            left: 0px;
+        }
+        .left .poker img+img{
+            left: 15px;
+        }
+        .left .poker img+img+img{
+            left: 30px;
+        }
+        .left .poker img+img+img+img{
+            left:45px;
+        }
+        .left .poker img+img+img+img+img{
+            left: 60px;
+        }
+
+        .right .poker img{
+            right: 0px;
+            z-index:5;
+        }
+        .right .poker img+img{
+            right: 15px;
+            z-index:4;
+        }
+        .right .poker img+img+img{
+            right: 30px;
+            z-index:3;
+        }
+        .right .poker img+img+img+img{
+            right:45px;
+            z-index:2;
+        }
+        .right .poker img+img+img+img+img{
+            right: 60px;
+            z-index:1;
+        }
+
+        .info{
+            width:30px;
+            height:30px;
+            display:inline-block;
+            padding:0px 5px;
+
+        }
+        .info img{
+            position:relative;
+            display:block;
+            width:100%;
+            box-shadow: 0px 0pc 2px 2px rgba(0,0,0,0.025);
+            border: 0.5px solid rgba(0,0,0,0.2);
+            border-radius: 4px;
+        }
+        .info{
+            display:inline-block;
+            font-size:10px;
+            vertical-align: top;
+        }
+        .poker-wrap{
+            display:inline-block;
+            vertical-align: top;
+        }
+
+        .poker-wrap .text{
+            font-size:10px;
+        }
+        .poker-wrap .text .name{
+            display:inline-block;
+            max-width:70px;
+            margin-right:2px;
+        }
+        .poker-wrap .text .score{
+        }
+
+        .item{
+            display: flex;
+            /*横向排列*/
+            flex-direction: row ;
+            /*不换行*/
+            flex-wrap: nowrap;
+            /*垂直居中*/
+            align-items: center;
+            width:50%;
+            position: relative;
+
+        }
+
+        .item.left{
+            /*左对齐*/
+            justify-content:left;
+            float:left;
+        }
+
+        .item.right{
+            /*左对齐*/
+            justify-content:flex-end;
+            float:right;
+        }
+        .left .cardType,.right .cardType{
+            position: absolute;
+            bottom: 10px;
+            font-size: 16px;
+            background: #ad833f;
+            color: #fff;
+            padding: 0px 5px;
+            border-radius: 4px;
+            z-index: 99;
+        }
+        .left .cardType{
+            right: 23px;
+         }
+        .right .cardType{
+            left: 23px;
+        }
+
+    </style>
+
+</head>
+<body>
+
+
+<div id="app">
+{{msg}}
+
+
+    <div v-for="(gamer,index) in roomInfo.data.msg.gamers">
+        <left-user v-if="(index+1)%2==1" v-bind:gamer="gamer"></left-user>
+        <right-user v-if="(index+1)%2==0" v-bind:gamer="gamer"></right-user>
+
+    </div>
+
+
+
+
+</div>
+
+
+
+<div class="item left">
+
+    <div class="info">
+        <img class="avatar" src="../static/images/avatar_default.png">
+    </div>
+    <div class="poker-wrap">
+        <p class="text">
+            <span class="name">zs</span>
+            <span class="score">300</span>
+        </p>
+        <div class="poker">
+            <img src="../static/images/poker/poker_10_3.png"/>
+            <img src="../static/images/poker/poker_9_2.png"/>
+            <img src="../static/images/poker/poker_5_3.png"/>
+            <img src="../static/images/poker/poker_1_1.png"/>
+            <img src="../static/images/poker/poker_13_4.png"/>
+        </div>
+    </div>
+
+    <div class="cardType">
+        牛牛
+    </div>
+
+
+</div>
+
+<div class="item right">
+
+    <div class="poker-wrap">
+        <p class="text">
+            <span class="score">300</span>
+            <span class="name">张三的爸爸</span>
+        </p>
+        <div class="poker">
+            <img src="../static/images/poker/poker_10_3.png"/>
+            <img src="../static/images/poker/poker_9_2.png"/>
+            <img src="../static/images/poker/poker_5_3.png"/>
+            <img src="../static/images/poker/poker_1_1.png"/>
+            <img src="../static/images/poker/poker_13_4.png"/>
+        </div>
+    </div>
+
+    <div class="info">
+        <img class="avatar" src="../static/images/avatar_default.png">
+    </div>
+
+    <div class="cardType">
+        牛牛
+    </div>
+
+</div>
+
+
+
+<div class="item left">
+
+    <div class="info">
+        <img class="avatar" src="../static/images/avatar_default.png">
+    </div>
+    <div class="poker-wrap">
+        <p class="text">
+            <span class="name">张三的爸爸</span>
+            <span class="score">300</span>
+        </p>
+        <div class="poker">
+            <img src="../static/images/poker/poker_10_3.png"/>
+            <img src="../static/images/poker/poker_9_2.png"/>
+            <img src="../static/images/poker/poker_5_3.png"/>
+            <img src="../static/images/poker/poker_1_1.png"/>
+            <img src="../static/images/poker/poker_13_4.png"/>
+        </div>
+    </div>
+
+
+</div>
+
+<div class="item right">
+
+    <div class="poker-wrap">
+        <p class="text">
+            <span class="score">300</span>
+            <span class="name">张三的爸爸</span>
+        </p>
+        <div class="poker">
+            <img src="../static/images/poker/poker_10_3.png"/>
+            <img src="../static/images/poker/poker_9_2.png"/>
+            <img src="../static/images/poker/poker_5_3.png"/>
+            <img src="../static/images/poker/poker_1_1.png"/>
+            <img src="../static/images/poker/poker_13_4.png"/>
+        </div>
+    </div>
+
+    <div class="info">
+        <img class="avatar" src="../static/images/avatar_default.png">
+    </div>
+
+
+</div>
+
+
+
+<div class="item left">
+
+    <div class="info">
+        <img class="avatar" src="../static/images/avatar_default.png">
+    </div>
+    <div class="poker-wrap">
+        <p class="text">
+            <span class="name">张三的爸爸</span>
+            <span class="score">300</span>
+        </p>
+        <div class="poker">
+            <img src="../static/images/poker/poker_10_3.png"/>
+            <img src="../static/images/poker/poker_9_2.png"/>
+            <img src="../static/images/poker/poker_5_3.png"/>
+            <img src="../static/images/poker/poker_1_1.png"/>
+            <img src="../static/images/poker/poker_13_4.png"/>
+        </div>
+    </div>
+
+
+</div>
+
+<div class="item right">
+
+    <div class="poker-wrap">
+        <p class="text">
+            <span class="score">300</span>
+            <span class="name">张三的爸爸</span>
+        </p>
+        <div class="poker">
+            <img src="../static/images/poker/poker_10_3.png"/>
+            <img src="../static/images/poker/poker_9_2.png"/>
+            <img src="../static/images/poker/poker_5_3.png"/>
+            <img src="../static/images/poker/poker_1_1.png"/>
+            <img src="../static/images/poker/poker_13_4.png"/>
+        </div>
+    </div>
+
+    <div class="info">
+        <img class="avatar" src="../static/images/avatar_default.png">
+    </div>
+
+
+</div>
+
+
+<div class="item left">
+
+    <div class="info">
+        <img class="avatar" src="../static/images/avatar_default.png">
+    </div>
+    <div class="poker-wrap">
+        <p class="text">
+            <span class="name">张三的爸爸</span>
+            <span class="score">300</span>
+        </p>
+        <div class="poker">
+            <img src="../static/images/poker/poker_10_3.png"/>
+            <img src="../static/images/poker/poker_9_2.png"/>
+            <img src="../static/images/poker/poker_5_3.png"/>
+            <img src="../static/images/poker/poker_1_1.png"/>
+            <img src="../static/images/poker/poker_13_4.png"/>
+        </div>
+    </div>
+
+
+</div>
+
+<div class="item right">
+
+    <div class="poker-wrap">
+        <p class="text">
+            <span class="score">300</span>
+            <span class="name">张三的爸爸</span>
+        </p>
+        <div class="poker">
+            <img src="../static/images/poker/poker_10_3.png"/>
+            <img src="../static/images/poker/poker_9_2.png"/>
+            <img src="../static/images/poker/poker_5_3.png"/>
+            <img src="../static/images/poker/poker_1_1.png"/>
+            <img src="../static/images/poker/poker_13_4.png"/>
+        </div>
+    </div>
+
+    <div class="info">
+        <img class="avatar" src="../static/images/avatar_default.png">
+    </div>
+
+
+</div>
+
+<style>
+
+    .my{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        width: 100%;
+    }
+    .my .poker{
+        height: 75px;
+    }
+    .my .poker img{
+        width :42px;
+        height: 59px;;
+        position: relative;
+        float: left;
+        margin: 5px;
+    }
+
+    .btns{
+        text-align: center;
+        height: 40px;
+        clear: both;
+    }
+    .btns button{
+        background: #ff9016;
+        color: #fff;
+        font-size: 16px;
+        border-radius: 5px;
+        padding: 5px 10px;
+        margin-bottom: 10px;
+    }
+
+</style>
+
+
+<div class="btns">
+    <button data-multiple="1" data-selector="setWager">1倍</button>
+    <button data-multiple="2" data-selector="setWager">2倍</button>
+    <button data-multiple="4" data-selector="setWager">4倍</button>
+    <button data-multiple="0" data-selector="setWager">不抢</button>
+    <button data-selector="readying">准备</button>
+    <button data-selector="showdown">摊牌</button>
+</div>
+
+
+<div class="item my">
+
+    <div class="info">
+        <img class="avatar" src="../static/images/avatar_default.png">
+    </div>
+    <div class="poker-wrap">
+        <p class="text">
+            <span class="name">张三的爸爸</span>
+            <span class="score">300</span>
+        </p>
+        <div class="poker">
+            <img src="../static/images/poker/poker_10_3.png"/>
+            <img src="../static/images/poker/poker_9_2.png"/>
+            <img src="../static/images/poker/poker_5_3.png"/>
+            <img src="../static/images/poker/poker_1_1.png"/>
+            <img src="../static/images/poker/poker_13_4.png"/>
+        </div>
+    </div>
+</div>
+
+
+
+</body>
+</html>

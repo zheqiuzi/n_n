@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+
+var getApiDomain=function () {
+    var domain="";
+    var url=location.href;
+    if(url.indexOf("localhost")!=-1 || url.indexOf("192.168")!=-1){
+        domain="192.168.99.217:8080"
+    }else if(url.indexOf("xiejin.ink")){
+        domain="xiejin.ink"
+    }
+
+    return domain;
+}
+
+
+var websocket = null;
+//判断当前浏览器是否支持WebSocket
+if ('WebSocket' in window) {
+    websocket = new WebSocket("ws://"+getApiDomain()+"/nn/roomAdmin");
+}
+else {
+    alert('当前浏览器 Not support websocket')
+}
+
+//websocket.send("hi");
+
+//连接成功建立的回调方法
+websocket.onopen = function () {
+    console.log("WebSocket连接成功");
+}
+
+//创建房间
+function crateRoom(){	
+	websocket.send("create");
+}
+
+//接收到消息的回调方法
+websocket.onmessage = function (event) {
+	console.log(event.data);
+//    setMessageInnerHTML(event.data);
+}
+
+function send(){
+	var msg=document.getElementById("msgcont");
+	websocket.send(msg.value);
+	console.log(msg.value);
+}
+</script>
+
+<input id="msgcont" />
+<button onclick="send()">发送</button>
+
+<button onclick='crateRoom()'>创建房间</button>
+</body>
+</html>

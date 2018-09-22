@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no, email=no" />
+    <script src="../static/"></script>
+    <style>
+        *{
+            padding: 0px;
+            border: 0px;
+            margin: 0px;;
+        }
+        body{
+            background:#eee;
+        }
+        .poker{
+            position:relative;
+            min-height:61px;
+            min-width: 97px;
+        }
+        .poker img{
+            display: block;
+            width: 35px;
+            height:45px;
+            background: #fff;
+            border-radius: 4px;
+            position: absolute;
+            top: 0px;
+            box-shadow: 0px 0pc 2px 2px rgba(0,0,0,0.025);
+            border: 0.5px solid rgba(0,0,0,0.2);
+        }
+
+        .left .poker img{
+            left: 0px;
+        }
+        .left .poker img+img{
+            left: 15px;
+        }
+        .left .poker img+img+img{
+            left: 30px;
+        }
+        .left .poker img+img+img+img{
+            left:45px;
+        }
+        .left .poker img+img+img+img+img{
+            left: 60px;
+        }
+
+        .right .poker img{
+            right: 0px;
+            z-index:5;
+        }
+        .right .poker img+img{
+            right: 15px;
+            z-index:4;
+        }
+        .right .poker img+img+img{
+            right: 30px;
+            z-index:3;
+        }
+        .right .poker img+img+img+img{
+            right:45px;
+            z-index:2;
+        }
+        .right .poker img+img+img+img+img{
+            right: 60px;
+            z-index:1;
+        }
+
+        .info{
+            width:30px;
+            height:30px;
+            display:inline-block;
+            padding:0px 5px;
+
+        }
+        .info img{
+            position:relative;
+            display:block;
+            width:100%;
+            box-shadow: 0px 0pc 2px 2px rgba(0,0,0,0.025);
+            border: 0.5px solid rgba(0,0,0,0.2);
+            border-radius: 4px;
+        }
+        .info{
+            display:inline-block;
+            font-size:10px;
+            vertical-align: top;
+        }
+        .poker-wrap{
+            display:inline-block;
+            vertical-align: top;
+        }
+
+        .poker-wrap .text{
+            font-size:10px;
+        }
+        .poker-wrap .text .name{
+            display:inline-block;
+            max-width:70px;
+            margin-right:2px;
+        }
+        .poker-wrap .text .score{
+        }
+
+        .item{
+            display: flex;
+            /*横向排列*/
+            flex-direction: row ;
+            /*不换行*/
+            flex-wrap: nowrap;
+            /*垂直居中*/
+            align-items: center;
+            width:50%;
+            position: relative;
+
+        }
+
+        .item.left{
+            /*左对齐*/
+            justify-content:left;
+            float:left;
+        }
+
+        .item.right{
+            /*左对齐*/
+            justify-content:flex-end;
+            float:right;
+        }
+
+        .left .cardType,.right .cardType{
+            position: absolute;
+            bottom: 10px;
+            font-size: 16px;
+            background: #ad833f;
+            color: #fff;
+            padding: 0px 5px;
+            border-radius: 4px;
+            z-index: 99;
+        }
+        .left .cardType{
+            left: -14px;
+        }
+        .right .cardType{
+            right: -14px;
+        }
+
+    </style>
+
+</head>
+<body>
+
+
+<div id="app">
+
+    <div v-for="(gamer,index) in otherGamer">
+        <left-user v-if="(index+1)%2==1&&gamer.id!=myid" v-bind:user="gamer" :id="gamer.id"></left-user>
+        <right-user v-if="(index+1)%2==0&&gamer.id!=myid" v-bind:user="gamer" :id="gamer.id"></right-user>
+    </div>
+
+    <timer v-bind:timer="timer" v-if="timer.event!='timeOut'&&(timer.remaining!=0&&timer.remaining!='0')"></timer>
+
+    <tools-btn v-if="btnsStatus=='able'" v-bind:timer="timer" @readying="readying" @setWager="setwager" @openCard="opencard" @setShowdown="setshowdown"></tools-btn>
+
+    <my-info v-bind:my="my"></my-info>
+
+
+
+
+
+</div>
+
+
+</body>
+</html>

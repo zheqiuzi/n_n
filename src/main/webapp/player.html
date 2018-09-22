@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+
+
+
+var getApiDomain=function () {
+    var domain="";
+    var url=location.href;
+    if(url.indexOf("localhost")!=-1 || url.indexOf("192.168")!=-1){
+        domain="192.168.99.217:8080"
+    }else if(url.indexOf("xiejin.ink")){
+        domain="xiejin.ink"
+    }
+
+    return domain;
+}
+
+var getQueryString=function(name) { 
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); 
+    var r = window.location.search.substr(1).match(reg); 
+    if (r != null) return unescape(r[2]); 
+    return null; 
+}
+
+
+
+var websocket = null;
+
+//websocket.send("hi");
+
+var userid=getQueryString("id");
+var nickName=getQueryString("nickName");
+if(userid==null||userid==""){
+	userid=parseInt(Math.random()*1000000)+"m"+new Date().getTime();
+}
+if(nickName==null||nickName==""){
+	nickName="匿名用户";
+}
+
+//打开页面创建连接
+createSocket(nickName,userid);
+function createSocket(nick,id){
+	
+	//判断当前浏览器是否支持WebSocket
+	if ('WebSocket' in window) {
+	    websocket = new WebSocket("ws://"+getApiDomain()+"/nn/login?id="+id);//+"&roomid="+roomid
+	}else{
+		return;
+	}
+	//连接成功建立的回调方法
+	websocket.onopen = function () {
+	    console.log("WebSocket连接成功");
+	}
+
+	//接收到消息的回调方法
+	websocket.onmessage = function (event) {
+		console.log(event.data);
+	}
+}
+
+function send(){
+	websocket.send("msg:"+getInput());	
+}
+
+function getInput(){
+	var inputText=document.getElementById("input");
+	return inputText.value;
+}
+
+//进入房间
+function joinRoom(){
+	websocket.send(formatMsg('join',getInput()));	
+}
+//准备
+function readying(){
+	websocket.send(formatMsg("readying","-"));
+}
+
+//设置倍数
+function setWager(){
+	websocket.send(formatMsg("setWager",getInput()));
+}
+
+//设置倍数
+function setShowdown(){
+	websocket.send(formatMsg("setShowdown",getInput()));
+}
+
+//获取房间及用户信息
+function getCurrentRoomInfo(){
+	websocket.send(formatMsg("getCurrentRoomInfo",getInput()));
+}
+
+function formatMsg(action,content){
+	return "{action:'"+action+"',content:'"+content+"'}";
+}
+
+
+
+
+
+
+
+</script>
+
+<input id="input" />
+
+<button onclick="joinRoom()">进入房间</button>
+<button onclick="readying()">准备</button>
+<button onclick="setWager()">下注</button>
+<button onclick="setShowdown()">摊牌</button>
+<button onclick="getCurrentRoomInfo()">获取房间信息</button>
+
+
+
+<button onclick="send()">发送消息</button>
+
+
+
+
+
+
+</body>
+</html>
